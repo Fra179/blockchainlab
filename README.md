@@ -1,3 +1,3 @@
 # javacicd
 
-Hello, world!
+Java project that uses Gradle
