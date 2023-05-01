@@ -30,6 +30,8 @@ The ▶️ buttons in VSCode should work out of the box.
 
 Otherwise, just run `./gradlew build` to build and `./gradlew test` to run tests.
 
+To see all available Gradle tasks, run `./gradlew tasks`.
+
 ## Running experiments
 
-Open `app/src/main/java/blockchainlab/App.java` in VSCode and press the play ▶️ button.
+Open `app/src/main/java/blockchainlab/App.java` in VSCode and press the play ▶️ button or run `./gradlew run`.
