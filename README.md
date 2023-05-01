@@ -39,7 +39,7 @@ should launch the app in your console.
 
 ## 🗞️ Releasing
 
-Pushes to main with a tag formatted like [`v1.4.2`](https://youtu.be/_Ms1Z4xfqv4?t=1227) trigger a release.
+Pushes to main with a tag formatted [like `v1.4.2`](https://youtu.be/_Ms1Z4xfqv4?t=1227) trigger a release.
 
 Remember to update value of the static `VERSION` string (`app/src/main/java/blockchainlab/constants/Constants.java`) after releasing.
 
