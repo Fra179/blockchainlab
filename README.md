@@ -37,6 +37,12 @@ java -jar app/build/libs/blockchainlab.jar
 
 should launch the app in your console.
 
+## Releasing
+
+Pushes to main with a tag formatted like [`v1.4.2`](https://youtu.be/_Ms1Z4xfqv4?t=1227) trigger a release.
+
+Remember to update value of the static `VERSION` string (`app/src/main/java/blockchainlab/constants/Constants.java`) after releasing.
+
 ---
 
 ## Troubleshooting
@@ -53,4 +59,3 @@ Before panicking, try:
 - [TeachYourselfCrypto](https://teachyourselfcrypto.com)
 - [Whiteboard Crypto](https://www.youtube.com/c/whiteboardcrypto)
 - [Blockchain 101 - A Visual Demo by Anders Brownworth](https://youtu.be/_160oMzblY8)
-- [Version Numbers (vX.X.X) meaning](https://youtu.be/_Ms1Z4xfqv4?t=1227)
