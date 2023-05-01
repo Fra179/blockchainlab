@@ -2,10 +2,6 @@
 
 Blockchain Laboratory: running Bitcoin experiments.
 
-## Assignment
-
-- [The Assignment](./assignment.pdf)
-
 ## Resources
 
 - [But how does bitcoin actually work? by 3Blue1Brown](https://youtu.be/bBC-nXj3Ng4)
