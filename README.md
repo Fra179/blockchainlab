@@ -1,8 +1,8 @@
-# Blockchain Laboratory
+# 🔬 Blockchain Laboratory
 
-> Blockchain Laboratory: running Bitcoin experiments.
+> Blockchain Laboratory: running ₿itcoin experiments.
 
-## Getting Started
+## 🚦 Getting Started
 
 This is a Java 11 project that uses Gradle.
 
@@ -13,7 +13,7 @@ This is a Java 11 project that uses Gradle.
 3. Install Java Extension Pack and Gradle Extension Pack in VSCode
 4. Clone and open this project in VSCode
 
-## Compiling and testing
+## 🧪 Compiling and testing
 
 Run `./gradlew build` to build and `./gradlew test` to run tests.
 
@@ -25,7 +25,7 @@ The Gradle tasks should be available in VSCode too:
 2. `Tasks: Run Task`
 3. `gradle`
 
-## Running experiments
+## 🧑‍🔬 Running experiments
 
 Run `./gradlew fatJar` to assemble a jar bundled with all dependencies, ready to be run.
 
@@ -37,7 +37,7 @@ java -jar app/build/libs/blockchainlab.jar
 
 should launch the app in your console.
 
-## Releasing
+## 🗞️ Releasing
 
 Pushes to main with a tag formatted like [`v1.4.2`](https://youtu.be/_Ms1Z4xfqv4?t=1227) trigger a release.
 
@@ -45,14 +45,14 @@ Remember to update value of the static `VERSION` string (`app/src/main/java/bloc
 
 ---
 
-## Troubleshooting
+## 🫨 Troubleshooting
 
 Before panicking, try:
 
 1. VSCode `Java: Clean the Java Language Server Workspace` command
 2. `rm -rf ~/.gradle`
 
-## Resources
+## 🌍 Resources
 
 - Assignment (professor Pietro Cenciarelli's original [pdf](./assignment.pdf), [md transcript](./assignment.md))
 - [But how does bitcoin actually work? by 3Blue1Brown](https://youtu.be/bBC-nXj3Ng4)
