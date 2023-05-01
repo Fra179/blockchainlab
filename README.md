@@ -2,12 +2,7 @@
 
 Blockchain Laboratory: running Bitcoin experiments.
 
-## Resources
-
-- [But how does bitcoin actually work? by 3Blue1Brown](https://youtu.be/bBC-nXj3Ng4)
-- [TeachYourselfCrypto](https://teachyourselfcrypto.com)
-- [Whiteboard Crypto](https://www.youtube.com/c/whiteboardcrypto)
-- [Blockchain 101 - A Visual Demo by Anders Brownworth](https://youtu.be/_160oMzblY8)
+[Blockchain 101 - A Visual Demo by Anders Brownworth](https://youtu.be/_160oMzblY8)
 
 ## Getting Started
 
@@ -31,3 +26,12 @@ To see all available Gradle tasks, run `./gradlew tasks`.
 ## Running experiments
 
 Open `app/src/main/java/blockchainlab/App.java` in VSCode and press the play ▶️ button or just run `./gradlew run`.
+
+---
+
+## Resources
+
+- [But how does bitcoin actually work? by 3Blue1Brown](https://youtu.be/bBC-nXj3Ng4)
+- [TeachYourselfCrypto](https://teachyourselfcrypto.com)
+- [Whiteboard Crypto](https://www.youtube.com/c/whiteboardcrypto)
+-
