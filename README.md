@@ -30,6 +30,7 @@ To see all available Gradle tasks, run `./gradlew tasks`.
 
 ## Resources
 
+- Assignment ([pdf](./assignment.pdf), [md transcript](./assignment.md))
 - [But how does bitcoin actually work? by 3Blue1Brown](https://youtu.be/bBC-nXj3Ng4)
 - [TeachYourselfCrypto](https://teachyourselfcrypto.com)
 - [Whiteboard Crypto](https://www.youtube.com/c/whiteboardcrypto)
