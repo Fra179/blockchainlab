@@ -15,13 +15,13 @@ Blockchain Laboratory: running Bitcoin experiments.
 
 ## Getting Started
 
-This is a Java project that uses Gradle.
+This is a Java 11 project that uses Gradle.
 
 ### macOS + VSCode
 
 1. Install [Homebrew](https://brew.sh)
-2. Install Java using Homebrew by running `brew install java`
-3. Install Java Extension Pack and Gradle Extension in VSCode
+2. Install Java 11 using Homebrew by running `brew install java11`
+3. Install Java Extension Pack and Gradle Extension Pack in VSCode
 4. Clone and open this project in VSCode
 
 ## Compiling and testing
