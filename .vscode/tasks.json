@@ -1,0 +1,12 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Assemble and run fat jar",
+      "type": "shell",
+      "command": "./gradlew fatJar && java -jar app/build/libs/blockchainlab.jar"
+    }
+  ]
+}
