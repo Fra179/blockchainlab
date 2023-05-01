@@ -6,7 +6,10 @@
     {
       "label": "Assemble and run fat jar",
       "type": "shell",
-      "command": "./gradlew fatJar && java -jar app/build/libs/blockchainlab.jar"
+      "command": "./gradlew fatJar && java -jar app/build/libs/blockchainlab.jar",
+      "presentation": {
+        "focus": true
+      }
     }
   ]
 }
