@@ -23,7 +23,8 @@ To see all available Gradle tasks, run `./gradlew tasks`.
 
 ## Running experiments
 
-Open `app/src/main/java/blockchainlab/App.java` in VSCode and press the play ▶️ button or just run `./gradlew run`.
+- Open `app/src/main/java/blockchainlab/App.java` in VSCode and press the play ▶️ button
+- or just run `./gradlew run`.
 
 ---
 
