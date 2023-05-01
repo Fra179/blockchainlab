@@ -53,3 +53,4 @@ Before panicking, try:
 - [TeachYourselfCrypto](https://teachyourselfcrypto.com)
 - [Whiteboard Crypto](https://www.youtube.com/c/whiteboardcrypto)
 - [Blockchain 101 - A Visual Demo by Anders Brownworth](https://youtu.be/_160oMzblY8)
+- [Version Numbers (vX.X.X) meaning](https://youtu.be/_Ms1Z4xfqv4?t=1227)
