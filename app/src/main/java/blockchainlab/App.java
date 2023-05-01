@@ -12,11 +12,12 @@ import java.util.HashMap;
 import static org.fusesource.jansi.Ansi.ansi;
 
 import static blockchainlab.constants.Constants.BLOCKCHAIN_LAB_STRING;
+import static blockchainlab.constants.Constants.VERSION;;
 
 public class App {
     public static void main(String[] args) throws InterruptedException {
         AnsiConsole.systemInstall();
-        System.out.println(ansi().eraseScreen().render(BLOCKCHAIN_LAB_STRING));
+        System.out.println(ansi().eraseScreen().render(BLOCKCHAIN_LAB_STRING + " v" + VERSION));
 
         try {
             ConsolePrompt prompt = new ConsolePrompt();
