@@ -1,6 +1,6 @@
 # Blockchain Laboratory
 
-Blockchain Laboratory: running Bitcoin experiments.
+> Blockchain Laboratory: running Bitcoin experiments.
 
 ## Getting Started
 
