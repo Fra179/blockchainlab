@@ -23,7 +23,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'javacicd.App'
+    mainClass = 'blockchainlab.App'
 }
 
 tasks.named('test') {
