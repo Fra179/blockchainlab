@@ -23,12 +23,22 @@ dependencies {
     implementation 'de.codeshelf.consoleui:consoleui:0.0.13'
 }
 
-application {
-    // Define the main class for the application.
-    mainClass = 'blockchainlab.App'
-}
+mainClassName = "blockchainlab.App"
 
 tasks.named('test') {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': "${mainClassName}"
+    }
+
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+
+    archiveBaseName = "${rootProject.name}"
+
+    from { configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }

@@ -15,16 +15,27 @@ This is a Java 11 project that uses Gradle.
 
 ## Compiling and testing
 
-The ▶️ buttons in VSCode should work out of the box.
-
-Otherwise, just run `./gradlew build` to build and `./gradlew test` to run tests.
+Run `./gradlew build` to build and `./gradlew test` to run tests.
 
 To see all available Gradle tasks, run `./gradlew tasks`.
 
+The Gradle tasks should be available in VSCode too:
+
+1. Open the commands palette <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd>
+2. `Tasks: Run Task`
+3. `gradle`
+
 ## Running experiments
 
-- Open `app/src/main/java/blockchainlab/App.java` in VSCode and press the play ▶️ button
-- or just run `./gradlew run`.
+Run `./gradlew fatJar` to assemble a jar bundled with all dependencies, ready to be run.
+
+At this point,
+
+```bash
+java -jar app/build/libs/blockchainlab.jar
+```
+
+should launch the app in your console.
 
 ## Troubleshooting
 
