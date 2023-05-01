@@ -26,6 +26,13 @@ To see all available Gradle tasks, run `./gradlew tasks`.
 - Open `app/src/main/java/blockchainlab/App.java` in VSCode and press the play ▶️ button
 - or just run `./gradlew run`.
 
+## Troubleshooting
+
+Before panicking, try:
+
+1. VSCode `Java: Clean the Java Language Server Workspace` command
+2. `rm -rf ~/.gradle`
+
 ---
 
 ## Resources
