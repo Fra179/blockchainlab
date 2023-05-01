@@ -2,8 +2,6 @@
 
 Blockchain Laboratory: running Bitcoin experiments.
 
-[Blockchain 101 - A Visual Demo by Anders Brownworth](https://youtu.be/_160oMzblY8)
-
 ## Getting Started
 
 This is a Java 11 project that uses Gradle.
@@ -34,4 +32,4 @@ Open `app/src/main/java/blockchainlab/App.java` in VSCode and press the play ▶
 - [But how does bitcoin actually work? by 3Blue1Brown](https://youtu.be/bBC-nXj3Ng4)
 - [TeachYourselfCrypto](https://teachyourselfcrypto.com)
 - [Whiteboard Crypto](https://www.youtube.com/c/whiteboardcrypto)
--
+- [Blockchain 101 - A Visual Demo by Anders Brownworth](https://youtu.be/_160oMzblY8)
