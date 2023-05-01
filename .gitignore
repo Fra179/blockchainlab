@@ -1,6 +1,7 @@
 # https://www.gitignore.io/api/java,gradle
 # https://github.com/github/gitignore/blob/main/Gradle.gitignore 
 
+
 ### Java ###
 *.class
 
