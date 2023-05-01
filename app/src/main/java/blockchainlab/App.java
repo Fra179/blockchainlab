@@ -4,7 +4,10 @@ import de.codeshelf.consoleui.prompt.ConsolePrompt;
 import de.codeshelf.consoleui.prompt.PromtResultItemIF;
 import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
 import jline.TerminalFactory;
+
 import org.fusesource.jansi.AnsiConsole;
+
+import blockchainlab.lib.CuteStrings;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,7 +20,9 @@ import static blockchainlab.constants.Constants.VERSION;;
 public class App {
     public static void main(String[] args) throws InterruptedException {
         AnsiConsole.systemInstall();
-        System.out.println(ansi().eraseScreen().render(BLOCKCHAIN_LAB_STRING + " v" + VERSION));
+        System.out.println(ansi()
+                .eraseScreen()
+                .render("@|green " + CuteStrings.boxify(BLOCKCHAIN_LAB_STRING + " (v" + VERSION + ")") + "|@\n"));
 
         try {
             ConsolePrompt prompt = new ConsolePrompt();
