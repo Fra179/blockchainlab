@@ -5,8 +5,6 @@ package blockchainlab;
 
 import org.junit.jupiter.api.Test;
 
-import blockchainlab.App;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class AppTest {
