@@ -24,7 +24,8 @@ public class App {
                 .eraseScreen()
                 .render("@|green " + CuteStrings.boxify(BLOCKCHAIN_LAB_STRING + " (v" + VERSION + ")") + "|@\n"));
 
-        // TODO: if file path is passed as arg, run experiment specified in file
+        // TODO: if experiment implementation class is passed as arg, run that
+        // experiment
 
         try {
             ConsolePrompt prompt = new ConsolePrompt();
