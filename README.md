@@ -37,14 +37,14 @@ java -jar app/build/libs/blockchainlab.jar
 
 should launch the app in your console.
 
+---
+
 ## Troubleshooting
 
 Before panicking, try:
 
 1. VSCode `Java: Clean the Java Language Server Workspace` command
 2. `rm -rf ~/.gradle`
-
----
 
 ## Resources
 
