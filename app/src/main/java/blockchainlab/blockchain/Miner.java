@@ -8,6 +8,8 @@ public final class Miner {
         int nonce = 0;
         HashableBlock hashableBlock = new HashableBlock(block, nonce++);
 
+        // TODO: multithreaded
+
         while (!hashableBlock.hash().startsWith("0".repeat(difficulty))) {
             hashableBlock = new HashableBlock(block, nonce++);
         }
