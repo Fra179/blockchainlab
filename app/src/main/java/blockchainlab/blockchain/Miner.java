@@ -4,6 +4,7 @@ public final class Miner {
     private Miner() {
     }
 
+    // TODO: javadoc
     public static final HashedBlock mine(Block block, int difficulty) {
         int nonce = 0;
         HashableBlock hashableBlock = new HashableBlock(block, nonce++);
