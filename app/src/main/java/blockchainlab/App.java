@@ -24,32 +24,38 @@ public class App {
                 .eraseScreen()
                 .render("@|green " + CuteStrings.boxify(BLOCKCHAIN_LAB_STRING + " (v" + VERSION + ")") + "|@\n"));
 
-        // TODO: if experiment implementation class is passed as arg, run that
-        // experiment
-
-        try {
-            ConsolePrompt prompt = new ConsolePrompt();
-            PromptBuilder promptBuilder = prompt.getPromptBuilder();
-
-            promptBuilder.createListPrompt()
-                    .name("pizzatype")
-                    .message("Which pizza do you want?")
-                    .newItem().text("Margherita").add() // without name (name defaults to text)
-                    .newItem("veneziana").text("Veneziana").add()
-                    .newItem("hawai").text("Hawai").add()
-                    .newItem("quattro").text("Quattro Stagioni").add()
-                    .addPrompt();
-
-            HashMap<String, ? extends PromtResultItemIF> result = prompt.prompt(promptBuilder.build());
-            System.out.println("result = " + result);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
+        if (args.length == 1) {
+            // TODO: if args[0] is valid experiment, run it, else, error + usage string +
+            // available experiments
+            System.out.println("Running experiment \"" + args[0] + "\"");
+        } else if (args.length == 0) {
+            // Run cli experiment designer
             try {
-                TerminalFactory.get().restore();
-            } catch (Exception e) {
+                ConsolePrompt prompt = new ConsolePrompt();
+                PromptBuilder promptBuilder = prompt.getPromptBuilder();
+
+                promptBuilder.createListPrompt()
+                        .name("pizzatype")
+                        .message("Which pizza do you want?")
+                        .newItem().text("Margherita").add() // without name (name defaults to text)
+                        .newItem("veneziana").text("Veneziana").add()
+                        .newItem("hawai").text("Hawai").add()
+                        .newItem("quattro").text("Quattro Stagioni").add()
+                        .addPrompt();
+
+                HashMap<String, ? extends PromtResultItemIF> result = prompt.prompt(promptBuilder.build());
+                System.out.println("result = " + result);
+            } catch (IOException e) {
                 e.printStackTrace();
+            } finally {
+                try {
+                    TerminalFactory.get().restore();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
+        } else {
+            // TODO: usage string
         }
     }
 }
