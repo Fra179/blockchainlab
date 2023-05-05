@@ -1,5 +1,7 @@
 package blockchainlab.blockchain;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public final class Miner {
     private Miner() {
     }
@@ -13,20 +15,18 @@ public final class Miner {
      * @return hashed block with hash starting with `difficulty` zeros
      */
     public static final HashedBlock mine(Block block, int difficulty) {
-        int nonce = 0;
-        HashableBlock hashableBlock = new HashableBlock(block, nonce++);
-
         // TODO: multithreaded
-
-        while (!hashableBlock.hash().startsWith("0".repeat(difficulty))) {
-            hashableBlock = new HashableBlock(block, nonce++);
-        }
+        HashableBlock hashableBlock;
+        do {
+            int nonce = ThreadLocalRandom.current().nextInt();
+            hashableBlock = new HashableBlock(block, nonce);
+        } while (!hashableBlock.hash().startsWith("0".repeat(difficulty)));
         return new HashedBlock(hashableBlock);
     }
 
     public static void main(String[] args) {
         Block block = new Block("Ciao Mamma!");
-        HashedBlock hashedBlock = Miner.mine(block, 6);
+        HashedBlock hashedBlock = Miner.mine(block, 7);
         System.out.println(hashedBlock.asString());
         System.out.println(hashedBlock.hash());
     }
