@@ -1,6 +1,6 @@
 # 🔬 Blockchain Laboratory
 
-> Blockchain Laboratory: running ₿itcoin experiments.
+> Blockchain Laboratory: ₿itcoin experiments.
 
 ## 🚦 Getting Started
 
