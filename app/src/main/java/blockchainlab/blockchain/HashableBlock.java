@@ -18,7 +18,6 @@ public class HashableBlock extends Block {
 
     @Override
     public final String toString() {
-        // TODO: auto get all object data with reflection
         return "[#]" + this.id + "[?]" + this.nonce + "[@]" + this.coinbase.toString() + "[@@]" + this.transactions
                 + "[#<-#]"
                 + this.prevBlockHash;
