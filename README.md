@@ -80,3 +80,4 @@ Want to contribute? Read the [Developer's Notes](./dev.md)
 - [Whiteboard Crypto](https://www.youtube.com/c/whiteboardcrypto)
 - [Satoshi Nakamoto's Bitcoin Paper](https://bitcoin.org/bitcoin.pdf)
 - [Vitalik Buterin's Ethereum Paper](https://ethereum.org/en/whitepaper)
+- My [notes](https://danielfalbo.notion.site/0b2a7d36801a4762b6e5f2cffff45705) for professor Pietro Cenciarelli's course on _Programming_.
