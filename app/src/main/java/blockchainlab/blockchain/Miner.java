@@ -23,11 +23,4 @@ public final class Miner {
         } while (!hashableBlock.hash().startsWith("0".repeat(difficulty)));
         return new HashedBlock(hashableBlock);
     }
-
-    public static void main(String[] args) {
-        Block block = new Block("Ciao Mamma!");
-        HashedBlock hashedBlock = Miner.mine(block, 7);
-        System.out.println(hashedBlock.asString());
-        System.out.println(hashedBlock.hash());
-    }
 }

@@ -13,4 +13,9 @@ public class Coinbase {
         this.amount = amount;
         this.wallet = new Wallet(address);
     }
+
+    @Override
+    public String toString() {
+        return amount + "->" + wallet.toString();
+    }
 }

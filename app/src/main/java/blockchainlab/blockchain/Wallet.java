@@ -9,6 +9,11 @@ public class Wallet {
     }
 
     @Override
+    public String toString() {
+        return this.address;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == this) {
             return true;
