@@ -20,7 +20,7 @@ public final class Miner {
         do {
             int nonce = ThreadLocalRandom.current().nextInt();
             hashableBlock = new HashableBlock(block, nonce);
-        } while (!hashableBlock.hash().startsWith("0".repeat(difficulty)));
+        } while (!hashableBlock.hash().toString().startsWith("0".repeat(difficulty)));
         return new HashedBlock(hashableBlock);
     }
 }

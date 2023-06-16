@@ -22,9 +22,9 @@ public class HashableBlock extends Block {
         return "[#]" + this.id + "[#@]" + this.nonce + "[@]" + this.coinbase.toString() + "[@@]" + this.data;
     }
 
-    public final String hash() {
-        return Hashing.sha256()
+    public final Hash hash() {
+        return new Hash(Hashing.sha256()
                 .hashString(this.toString(), StandardCharsets.UTF_8)
-                .toString();
+                .toString());
     }
 }
