@@ -2,6 +2,7 @@ package blockchainlab.blockchain;
 
 import static blockchainlab.blockchain.InvalidTransactionsPacketException.*;
 
+// Why? So we're sure about transactions packet immutability
 public class Transactions {
     public final Transaction first;
     public final Transaction second;
@@ -22,5 +23,10 @@ public class Transactions {
             this.fourth = transactions[3];
             this.fifth = transactions[4];
         }
+    }
+
+    @Override
+    public String toString() {
+        return "[[T0]]" + first + "[[T1]]" + second + "[[T2]]" + third + "[[T4]]" + fourth + "[[T5]]" + fifth;
     }
 }

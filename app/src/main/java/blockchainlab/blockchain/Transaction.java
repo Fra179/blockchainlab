@@ -10,4 +10,15 @@ public class Transaction {
         this.from = from;
         this.to = to;
     }
+
+    public Transaction(double amount, String from, String to) {
+        this.amount = amount;
+        this.from = new Wallet(from);
+        this.to = new Wallet(to);
+    }
+
+    @Override
+    public String toString() {
+        return from + "-" + amount + "->" + to;
+    }
 }
