@@ -6,6 +6,10 @@
 
 ### Installation
 
+<!-- TODO -->
+
+Coming soon...
+
 <!-- ```bash
 brew tap danielfalbo/homebrew-formulae
 brew install blockchainlab
@@ -14,6 +18,10 @@ brew install blockchainlab
 ### Usage
 
 #### Interactive mode: design your own experiment
+
+<!-- TODO -->
+
+Coming soon...
 
 <!-- Run
 
@@ -24,6 +32,10 @@ blockchainlab
 to launch the app in interactive mode: it will guide you through the desing of your own experiment. -->
 
 #### Run an example experiment
+
+<!-- TODO -->
+
+Coming soon...
 
 <!-- ```bash
 blockchainlab <experiment>
@@ -43,7 +55,7 @@ A malicious agent attempts to create a double-spending transaction by submitting
 
 A malicious miner attempts to create an invalid block that includes a transaction moving bitcoins to their wallet from someone else's without their consensus.
 
-<!-- ### 51% Attack (`51percentAttack`)
+### 51% Attack (`51percentAttack`)
 
 An attacker gains control of more than 50% of the mining power in the network. Will them be able to validate new malicious transactions and get the invalid blocks to survive in the blockchain?
 
@@ -53,7 +65,7 @@ A malicious agent attempts to flood the network with bogus transactions to disru
 
 ### Selfish Mining (`selfishMining`)
 
-A selfish miner attempts to manipulate the network by withholding valid blocks they have found in order to gain an advantage over other miners. They may then release multiple blocks at once in order to invalidate the work of other miners and gain a larger share of the rewards. -->
+A selfish miner attempts to manipulate the network by withholding valid blocks they have found in order to gain an advantage over other miners. They may then release multiple blocks at once in order to invalidate the work of other miners and gain a larger share of the rewards.
 
 ## 👨‍💻 Contributing
 
