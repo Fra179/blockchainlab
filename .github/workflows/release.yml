@@ -36,7 +36,7 @@ jobs:
           files: app/build/libs/blockchainlab.jar
 
       - name: Bump Homebrew formula
-        uses: mislav/bump-homebrew-formula-action@v2
+        uses: mislav/bump-homebrew-formula-action@v2.2
         with:
           formula-name: blockchainlab
           homebrew-tap: danielfalbo/homebrew-formulae
