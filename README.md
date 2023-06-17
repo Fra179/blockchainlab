@@ -71,6 +71,13 @@ A selfish miner attempts to manipulate the network by withholding valid blocks t
 
 Want to contribute? Read the [Developer's Notes](./dev.md)
 
+### 🛣️ Roadmap
+
+1. [MultithreadedMiner](./app/src/main/java/blockchainlab/blockchain/MultithreadedMiner.java)
+2. Have `MultithreadedMiner`s get the blocks to mine from some sort of shared queue "pool", and notify all other miners to stop working once a block is mined.
+3. Have `MultithreadedMiner`s to push mined blocks onto another different sort of "pool" of mined blocks, for nodes/validators/whoever to validate them with the blockchain and eventually merge them.
+4. We'll figure it out.
+
 ## 🌍 Resources
 
 - Professor Pietro Cenciarelli's Assignment ([original pdf](./assignment.pdf), [md transcript](./assignment.md))
