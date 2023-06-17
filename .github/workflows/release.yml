@@ -38,7 +38,8 @@ jobs:
       - name: Bump Homebrew formula
         uses: mislav/bump-homebrew-formula-action@v2.2
         with:
-          formula-name: blockchainlab
+          formula-path: blockchainlab.rb
           homebrew-tap: danielfalbo/homebrew-formulae
+          base-branch: main
         env:
           COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
