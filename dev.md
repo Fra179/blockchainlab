@@ -39,7 +39,9 @@ should launch the app in your console.
 
 Pusing to main with a tag formatted [like `v1.4.2`](https://youtu.be/_Ms1Z4xfqv4?t=1227) triggers a release.
 
-Remember to update value of the static `VERSION` string after releasing. (`app/src/main/java/blockchainlab/constants/Constants.java`)
+Remember to commit first, add tag after commit, then push.
+
+Also remember to update value of the static `VERSION` string after releasing. (`app/src/main/java/blockchainlab/constants/Constants.java`)
 
 ---
 
