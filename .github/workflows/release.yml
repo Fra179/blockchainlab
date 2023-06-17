@@ -37,6 +37,7 @@ jobs:
 
       - name: Bump Homebrew formula
         uses: mislav/bump-homebrew-formula-action@v2.2
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           formula-path: blockchainlab.rb
           push-to: danielfalbo/homebrew-formulae
