@@ -39,7 +39,9 @@ jobs:
         uses: mislav/bump-homebrew-formula-action@v2.2
         with:
           formula-path: blockchainlab.rb
-          homebrew-tap: danielfalbo/homebrew-formulae
+          push-to: danielfalbo/homebrew-formulae
           base-branch: main
+          tag-name: ${{ github.ref_name }}
+          download-url: "https://github.com/danielfalbo/blockchainlab/releases/download/${{ github.ref_name }}/blockchainlab.jar"
         env:
           COMMITTER_TOKEN: ${{ secrets.COMMITTER_TOKEN }}
