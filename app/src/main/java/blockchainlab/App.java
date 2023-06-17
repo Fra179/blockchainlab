@@ -14,22 +14,25 @@ import java.util.HashMap;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
-import static blockchainlab.constants.Constants.BLOCKCHAIN_LAB_STRING;
-import static blockchainlab.constants.Constants.VERSION;
+import static blockchainlab.constants.Constants.VERBOSE_VERSION;;
 
 public class App {
     public static void main(String[] args) throws InterruptedException {
         AnsiConsole.systemInstall();
-        System.out.println(ansi()
-                .eraseScreen()
-                .render("@|green " + CuteStrings.boxify(BLOCKCHAIN_LAB_STRING + " (v" + VERSION + ")") + "|@\n"));
 
         if (args.length == 1) {
-            // TODO: if args[0] is valid experiment, run it, else, error + usage string +
-            // available experiments
-            System.out.println("Running experiment \"" + args[0] + "\"");
+            if (args[0].strip().equals("--version")) {
+                System.out.println(VERBOSE_VERSION);
+            } else {
+                // TODO: if args[0] is valid experiment, run it, else, error + usage string +
+                // available experiments
+                System.out.println("Running experiment \"" + args[0] + "\"");
+            }
         } else if (args.length == 0) {
             // Run cli experiment designer
+            System.out.println(ansi()
+                    .eraseScreen()
+                    .render("@|green " + CuteStrings.boxify(VERBOSE_VERSION) + "|@\n"));
             try {
                 ConsolePrompt prompt = new ConsolePrompt();
                 PromptBuilder promptBuilder = prompt.getPromptBuilder();
@@ -56,6 +59,7 @@ public class App {
             }
         } else {
             // TODO: usage string
+            System.out.println("Usage:");
         }
     }
 }
