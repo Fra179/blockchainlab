@@ -6,40 +6,28 @@
 
 ### Installation
 
-<!-- TODO -->
-
-Coming soon...
-
-<!-- ```bash
+```bash
 brew tap danielfalbo/homebrew-formulae
 brew install blockchainlab
-``` -->
+```
 
 ### Usage
 
 #### Interactive mode: design your own experiment
 
-<!-- TODO -->
-
-Coming soon...
-
-<!-- Run
+Run
 
 ```bash
 blockchainlab
 ```
 
-to launch the app in interactive mode: it will guide you through the desing of your own experiment. -->
+to launch the app in interactive mode: it will guide you through the desing of your own experiment.
 
 #### Run an example experiment
 
-<!-- TODO -->
-
-Coming soon...
-
-<!-- ```bash
+```bash
 blockchainlab <experiment>
-``` -->
+```
 
 ## 🧫 Available Experiments
 
