@@ -5,7 +5,9 @@ import blockchainlab.blockchain.communicator.Communicator;
 import blockchainlab.blockchain.wallet.ColdWallet;
 import blockchainlab.blockchain.wallet.HotWallet;
 
+import java.io.Console;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.ArrayList;
@@ -42,17 +44,18 @@ public class App {
             wallets[i] = new HotWallet(HotWallet.generateKeyPair());
         }
 
+        System.out.println(Arrays.toString(wallets));
+
         Thread[] clients = new Thread[numClients];
         Thread[] miners = new Thread[numMiners];
 
         Communicator communicator = new Communicator();
 
-
         for (int i = 0; i < numClients; i++) {
-            ColdWallet[] threadContacts = new ColdWallet[numClients - 1];
+            ColdWallet[] threadContacts = new ColdWallet[numNodes - 1];
 
             int k = 0;
-            for (int j = 0; j < numClients; j++) {
+            for (int j = 0; j < numNodes; j++) {
                 if (j != i) {
                     threadContacts[k] = wallets[j];
                     k++;
@@ -64,17 +67,17 @@ public class App {
         }
 
         for (int i = 0; i < numMiners; i++) {
-            ColdWallet[] threadContacts = new ColdWallet[numMiners - 1];
+            ColdWallet[] threadContacts = new ColdWallet[numNodes - 1];
 
             int k = 0;
-            for (int j = numClients; j < numNodes; j++) {
+            for (int j = 0; j < numNodes; j++) {
                 if (j != i+numClients) {
                     threadContacts[k] = wallets[j];
                     k++;
                 }
             }
 
-            miners[i] = new Thread(new MinerNode(communicator, wallets[i], threadContacts));
+            miners[i] = new Thread(new MinerNode(communicator, wallets[i+numClients], threadContacts));
             miners[i].start();
         }
 

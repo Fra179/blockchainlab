@@ -3,6 +3,8 @@ package blockchainlab.blockchain.block;
 import blockchainlab.blockchain.wallet.ColdWallet;
 import blockchainlab.blockchain.wallet.HotWallet;
 
+import java.util.Arrays;
+
 public class Transaction {
     public final double amount;
     public final HotWallet from;
@@ -18,7 +20,7 @@ public class Transaction {
 
     @Override
     public String toString() {
-        return from + "-" + amount + "->" + to;
+        return from + "-" + amount + "(" + fee + ")" + "->" + to;
     }
 
     public void verify() throws InvalidTransactionException {

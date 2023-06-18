@@ -1,5 +1,7 @@
 package blockchainlab.blockchain;
+
 import java.security.NoSuchAlgorithmException;
+
 import blockchainlab.blockchain.block.Block;
 import blockchainlab.blockchain.block.Coinbase;
 import blockchainlab.blockchain.block.Hash;
@@ -26,9 +28,9 @@ import java.util.logging.Logger;
 public class MinerNode implements Runnable {
     Client cl;
     HotWallet w;
-    MultithreadedMiner m;
-    Mempool mem;
-    Blockchain bc;
+    MultithreadedMiner m = new MultithreadedMiner();
+    Mempool mem = new Mempool();
+    Blockchain bc = new Blockchain();
     Random rand = new Random();
     ColdWallet[] contacts;
     Logger logger;
@@ -37,10 +39,10 @@ public class MinerNode implements Runnable {
 
     public MinerNode(Communicator c, HotWallet wallet, ColdWallet[] contacts) throws NoSuchAlgorithmException {
         w = wallet;
-        m = new MultithreadedMiner();
         cl = new Client(c);
         this.contacts = contacts;
-        this.logger = Logger.getLogger("MinerNode-" + MINER_N++);
+        logger = Logger.getLogger("MinerNode-" + MINER_N++);
+        logger.info("Hi, I'm miner node and I'm " + w);
     }
 
     void handle(SignedTransaction t) {
@@ -49,7 +51,7 @@ public class MinerNode implements Runnable {
             mem.push(t);
             logger.info("New transaction added to mempool:\n" + t);
         } catch (InvalidTransactionException e) {
-            logger.warning("Invalid transaction: " + t);
+            logger.warning("Invalid transaction: " + e);
         }
     }
 
@@ -62,31 +64,33 @@ public class MinerNode implements Runnable {
             this.m.stopMining();
             logger.info("New block added to blockchain:\n" + b);
         } catch (InvalidBlockException e) {
-            logger.warning("Invalid block: " + b);
+            logger.warning("Invalid block: " + e);
         }
     }
 
     void handle(Object o) {
         if (o instanceof SignedTransaction) {
-            Transaction t = (Transaction) o;
-            handle(t);
+            handle((SignedTransaction) o);
         } else if (o instanceof HashedBlock) {
-            HashedBlock b = (HashedBlock) o;
-            handle(b);
+            handle((HashedBlock) o);
         }
     }
 
     public void sendMoney() {
-        if (rand.nextInt(1000) == 690) {
+        if (rand.nextInt(100000) == 690) {
             double amount = rand.nextDouble() * bc.getBalance(w.pubKey);
+
+            if (amount == 0) {
+                return;
+            }
+
             double fee = Math.pow(rand.nextDouble(), 3) * amount;
             Transaction t = new Transaction(amount, w, contacts[rand.nextInt(contacts.length)], fee);
             SignedTransaction st;
 
             try {
                 st = new SignedTransaction(t, w.signTransaction(t));
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 System.out.println("Can't sign transaction: " + t);
                 return;
             }
@@ -99,48 +103,49 @@ public class MinerNode implements Runnable {
     public void run() {
         while (true) {
             try {
-                Object o = cl.poll();
-                handle(o);
-            } catch (NoSuchElementException e) {
+                handle(cl.poll());
+            } catch (NoSuchElementException ignored) {
 
+            }
+
+            sendMoney();
+
+            try {
+                HashedBlock b = m.checkResult();
+                cl.broadcast(b);
+                continue;
+            } catch (BlockNotMinedException ignored) {
             }
 
             if (m.isBusy()) {
                 continue;
             }
 
-            try {
-                HashedBlock b = m.checkResult();
-                cl.broadcast((Object) b);
-                continue;
-            } catch (BlockNotMinedException e) {
-                
-            }
-            
             Transactions t;
             try {
                 t = mem.getTransactions(5);
             } catch (InvalidTransactionsPacketException e) {
                 loop_n++;
 
-                if (loop_n > 300) {
+                if (loop_n > 120000) {
                     try {
-                        t = mem.getAllTransactions();                        
+                        t = mem.getAllTransactions();
                         loop_n = 0;
                         logger.info("Unable to create a block with 5 transactions, creating a block with all transactions in mempool");
                     } catch (InvalidTransactionsPacketException e2) {
                         logger.warning(e2.getMessage());
                         continue;
                     }
+                } else {
+                    continue;
                 }
 
-                continue;
             }
 
             boolean removed = false;
             for (SignedTransaction st : t.getTransactions()) {
                 if (bc.getBalance(st.from.pubKey) < (st.amount + st.fee)) {
-                    mem.removeTransaction((Transaction) st);
+                    mem.removeTransaction(st);
                     removed = true;
                     logger.warning("Not enough money to send transaction: " + st);
                 }
@@ -151,7 +156,8 @@ public class MinerNode implements Runnable {
             }
 
             Hash h = bc.getLatestBlock().orElse(new Hash("0"));
-            Block b = new Block(new Coinbase((ColdWallet) w), t, bc.getLastID() + 1, h);
+            Block b = new Block(new Coinbase(w), t, bc.getLastID() + 1, h);
+            logger.info("Starting to mine block " + b);
             m.startMining(b, 2);
         }
     }

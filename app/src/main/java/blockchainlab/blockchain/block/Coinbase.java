@@ -20,6 +20,6 @@ public class Coinbase {
 
     @Override
     public String toString() {
-        return amount + "->" + wallet.toString();
+        return amount + "->" + wallet;
     }
 }

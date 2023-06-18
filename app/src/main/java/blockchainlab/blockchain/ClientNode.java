@@ -25,52 +25,53 @@ public class ClientNode implements Runnable {
     private static int CLIENT_N = 0;
 
 
-
-    void handle(HashedBlock b) {
-        try {
-            b.verify();
-            this.bc.addBlock(b);
-        } catch (InvalidBlockException e) {
-            
-        }
-    }
-
-    void handle(Object o) {
-        if (o instanceof SignedTransaction) {
-            Transaction t = (Transaction) o;
-            handle(t);
-        } else if (o instanceof HashedBlock) {
-            HashedBlock b = (HashedBlock) o;
-            handle(b);
-        }
-    }
-
     public ClientNode(Communicator c, HotWallet w, ColdWallet[] contacts) throws NoSuchAlgorithmException {
         this.w = w;
         cl = new Client(c);
         this.contacts = contacts;
         rand = new Random();
         this.logger = Logger.getLogger("MinerNode-" + CLIENT_N++);
-
+        this.bc = new Blockchain();
+        logger.info("Hi, I'm client node and I'm " + w);
 
     }
 
+
+    void handle(HashedBlock b) {
+        try {
+            b.verify();
+            this.bc.addBlock(b);
+        } catch (InvalidBlockException e) {
+            logger.warning("Invalid block: " + b);
+        }
+    }
+
+    void handle(Object o) {
+        if (o instanceof HashedBlock) {
+            handle((HashedBlock) o);
+        }
+    }
+
     public void sendMoney() {
-        if (rand.nextInt(1000) == 690) {
+        if (rand.nextInt(100000) == 690) {
             double amount = rand.nextDouble() * bc.getBalance(w.pubKey);
+
+            if (amount == 0) {
+                return;
+            }
+
             double fee = Math.pow(rand.nextDouble(), 3) * amount;
             Transaction t = new Transaction(amount, w, contacts[rand.nextInt(contacts.length)], fee);
             SignedTransaction st;
 
             try {
                 st = new SignedTransaction(t, w.signTransaction(t));
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 logger.warning("Can't sign transaction: " + t);
                 return;
             }
 
-            cl.broadcast((Object) st);
+            cl.broadcast(st);
             logger.info("New transaction sent:\n" + st);
 
         }
@@ -82,11 +83,11 @@ public class ClientNode implements Runnable {
         int randomMax = 1500;
         int randomTime = rand.nextInt(randomMin, randomMax + 1);
 
-        
+
         try {
             Thread.sleep(randomTime);
         } catch (InterruptedException e) {
-            
+
         }
 
         while (true) {
@@ -96,7 +97,7 @@ public class ClientNode implements Runnable {
             } catch (NoSuchElementException e) {
 
             }
-            sendMoney();           
+            sendMoney();
         }
     }
 }

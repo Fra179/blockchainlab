@@ -1,5 +1,8 @@
 package blockchainlab.blockchain.wallet;
+
 import java.security.PublicKey;
+import java.util.Arrays;
+
 public class ColdWallet {
     // Strings objects are immutable, so this is safe enough
     public final PublicKey pubKey;
@@ -10,7 +13,11 @@ public class ColdWallet {
 
     @Override
     public String toString() {
-        return this.pubKey.toString();
+        StringBuilder res = new StringBuilder();
+        for (byte b : this.pubKey.getEncoded()) {
+            res.append(String.format("%02X", b));
+        }
+        return res.toString();
     }
 
     @Override

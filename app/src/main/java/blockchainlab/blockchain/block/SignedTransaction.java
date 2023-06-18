@@ -29,16 +29,19 @@ public class SignedTransaction extends Transaction{
         } catch (InvalidKeyException e) {
             throw new InvalidTransactionException(e);
         }
-        byte[] signed;
+
+        byte[] signature = Base64.getDecoder().decode(this.sign);
+        boolean valid;
 
         try {
-            sig.update(this.toString().getBytes());
-            signed = sig.sign();
+            sig.update(super.toString().getBytes());
+            valid = sig.verify(signature);
         } catch (SignatureException e) {
             throw new InvalidTransactionException(e);
         }
 
-        if (Base64.getEncoder().encodeToString(signed) != this.sign) {
+
+        if (!valid) {
             throw new InvalidTransactionException("Invalid signature");
         }
     }

@@ -29,21 +29,12 @@ public class Mempool {
         return new Transactions(t);
     }
 
-    public Transactions getTransactions(int n) throws InvalidTransactionsPacketException {
-        if (this.transactions.size() < n) {
+    public Transactions getTransactions(int min) throws InvalidTransactionsPacketException {
+        if (this.transactions.size() < min) {
             throw InvalidTransactionsPacketException.PACKET_SIZE_DOESNT_MATCH_STANDARD_SIZE_EXCEPTION;
         }
 
-        SignedTransaction[] t = new SignedTransaction[5];
-
-        for (int i = 0; i < 5; i++) {
-            t[i] = this.transactions.poll();
-        }
-        for (SignedTransaction st : t) {
-            this.transactions.add(st);
-        }
-
-        return new Transactions(t);
+        return getAllTransactions();
     }
 
     public void removeTransactions(Transactions t) {

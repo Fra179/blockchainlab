@@ -12,7 +12,7 @@ public final class HashedBlock extends HashableBlock {
 
     public void verify() throws InvalidBlockException {
         super.verify();
-        if (this.hash.hash.startsWith("0".repeat(Constants.DIFFICULTY))) {
+        if (!this.hash.toString().startsWith("0".repeat(Constants.DIFFICULTY))) {
             throw new InvalidBlockException("Hashes do not match");
         }
     }

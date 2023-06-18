@@ -6,6 +6,8 @@ import blockchainlab.blockchain.block.Block;
 import blockchainlab.blockchain.block.HashedBlock;
 import blockchainlab.constants.Constants;
 import blockchainlab.blockchain.block.HashableBlock;
+
+import java.io.Console;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MultithreadedMiner{
@@ -48,7 +50,7 @@ public class MultithreadedMiner{
 
     private Mining[] minings = new Mining[numThreads];
     private Thread[] miners = new Thread[numThreads];
-    private boolean interrupted = false;
+    private boolean interrupted = true;
 
     public void startMining(Block block, int difficulty) {
 

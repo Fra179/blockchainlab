@@ -13,8 +13,8 @@ public class Blockchain {
     HashMap<PublicKey, Double> balances = new HashMap<>();
 
     public void addBlock(HashedBlock block) throws InvalidBlockException {
-        if (block.prevBlockHash != tail.block.hash) {
-            throw new InvalidBlockException("Hashes do not match");
+        if (tail != null && block.prevBlockHash != tail.block.hash) {
+            throw new InvalidBlockException("Previous hash do not match");
         }
 
         BlockchainNode node = new BlockchainNode(block, tail);
@@ -31,7 +31,7 @@ public class Blockchain {
 
     public Optional<Hash> getLatestBlock() {
         if (tail == null) {
-            return Optional.of(null);
+            return Optional.empty();
         }
         return Optional.of(tail.block.hash);
     }

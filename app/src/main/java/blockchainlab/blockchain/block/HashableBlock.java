@@ -18,9 +18,16 @@ public class HashableBlock extends Block {
 
     @Override
     public final String toString() {
-        return "[#]" + this.id + "[?]" + this.nonce + "[@]" + this.coinbase.toString() + "[@@]" + this.transactions
-                + "[#<-#]"
-                + this.prevBlockHash;
+        String res = "";
+        res += "Block id: " + this.id;
+        res += "\nNonce: " + this.nonce;
+        res += "\nCoinbase: " + this.coinbase;
+        res += "\nTransactions:\n" + this.transactions + "\n\n";
+        res += "Prev Hash: " + this.prevBlockHash;
+        //return "[#]" + this.id + "[?]" + this.nonce + "[@]" + this.coinbase.toString() + "[@@]" + this.transactions
+        //        + "[#<-#]"
+        //        + this.prevBlockHash;
+        return res;
     }
 
     public final Hash hash() {
