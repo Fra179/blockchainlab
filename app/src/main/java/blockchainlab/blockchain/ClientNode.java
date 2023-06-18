@@ -1,6 +1,7 @@
 package blockchainlab.blockchain;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -89,9 +90,12 @@ public class ClientNode implements Runnable {
         }
 
         while (true) {
-            Object o = cl.poll();
-            handle(o);
-            
+            try {
+                Object o = cl.poll();
+                handle(o);
+            } catch (NoSuchElementException e) {
+
+            }
             sendMoney();           
         }
     }

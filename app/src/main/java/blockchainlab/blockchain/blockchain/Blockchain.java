@@ -36,6 +36,13 @@ public class Blockchain {
         return Optional.of(tail.block.hash);
     }
 
+    public int getLastID() {
+        if (tail == null) {
+            return -1;
+        }
+        return tail.block.id;
+    }
+
     public Double getBalance(PublicKey address) {
         return balances.getOrDefault(address, 0.0);
     }

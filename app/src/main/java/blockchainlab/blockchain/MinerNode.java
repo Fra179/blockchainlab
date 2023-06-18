@@ -18,6 +18,8 @@ import blockchainlab.blockchain.miner.Mempool;
 import blockchainlab.blockchain.miner.MultithreadedMiner;
 import blockchainlab.blockchain.wallet.ColdWallet;
 import blockchainlab.blockchain.wallet.HotWallet;
+
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.logging.Logger;
 
@@ -96,8 +98,12 @@ public class MinerNode implements Runnable {
 
     public void run() {
         while (true) {
-            Object o = cl.poll();
-            handle(o);
+            try {
+                Object o = cl.poll();
+                handle(o);
+            } catch (NoSuchElementException e) {
+
+            }
 
             if (m.isBusy()) {
                 continue;
@@ -145,7 +151,7 @@ public class MinerNode implements Runnable {
             }
 
             Hash h = bc.getLatestBlock().orElse(new Hash("0"));
-            Block b = new Block(new Coinbase((ColdWallet) w), t, h);
+            Block b = new Block(new Coinbase((ColdWallet) w), t, bc.getLastID() + 1, h);
             m.startMining(b, 2);
         }
     }

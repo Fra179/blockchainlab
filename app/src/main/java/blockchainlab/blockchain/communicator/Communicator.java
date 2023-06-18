@@ -12,7 +12,7 @@ public class Communicator {
     }
 
     protected void register(String uuid) {
-        backbone.put(uuid, new LinkedList<>(null));
+        backbone.put(uuid, new LinkedList<>());
     }
 
     protected void broadcast(String uuid, Object message) {
