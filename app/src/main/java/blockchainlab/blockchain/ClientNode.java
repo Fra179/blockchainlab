@@ -54,7 +54,7 @@ public class ClientNode implements Runnable {
 
     public void sendMoney() {
         if (rand.nextInt(100000) == 690) {
-            double amount = rand.nextDouble() * bc.getBalance(w.pubKey);
+            double amount = rand.nextDouble() * bc.getBalance(w);
 
             if (amount == 0) {
                 return;

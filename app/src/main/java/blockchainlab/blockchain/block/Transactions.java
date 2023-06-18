@@ -2,9 +2,20 @@ package blockchainlab.blockchain.block;
 
 import static blockchainlab.blockchain.block.InvalidTransactionsPacketException.*;
 
+/**
+ * A simple class to encapsulate all the transactions
+ */
 public class Transactions {
-    private SignedTransaction[] transactions;
 
+    // we don't want people to mess with our transactions, so we make them private
+    private final SignedTransaction[] transactions;
+
+    /**
+     * The constructor takes an array of transactions and encapsulate them
+     *
+     * @param transactions the list of transactions to be encapsulated
+     * @throws InvalidTransactionsPacketException if the encapsulated transactions are null, we raise an exception
+     */
     public Transactions(SignedTransaction[] transactions) throws InvalidTransactionsPacketException {
         this.transactions = transactions;
 
@@ -15,10 +26,19 @@ public class Transactions {
         }
     }
 
+    /**
+     * A getter for our transactions, we want to look at them
+     * @return the array of transactions that are encapsulated
+     */
     public SignedTransaction[] getTransactions() {
         return this.transactions;
     }
 
+    /**
+     * A list of transaction is valid only if all the transactions inside it are valid
+     *
+     * @throws InvalidTransactionException if even a single transaction is not valid we raise an exception
+     */
     public void verify() throws InvalidTransactionException {
         for (SignedTransaction t : transactions) {
             t.verify();
@@ -40,6 +60,7 @@ public class Transactions {
 
 
 /*
+TODO: remove the packet if we have an error
 // Why? So we're sure about transactions packet immutability
 public class Transactions {
     public final SignedTransaction first;

@@ -1,5 +1,6 @@
 package blockchainlab.blockchain.block;
 
+// TODO: ask Daniel to comment
 public class Hash {
     public final String hash;
 

@@ -78,7 +78,7 @@ public class MinerNode implements Runnable {
 
     public void sendMoney() {
         if (rand.nextInt(100000) == 690) {
-            double amount = rand.nextDouble() * bc.getBalance(w.pubKey);
+            double amount = rand.nextDouble() * bc.getBalance(w);
 
             if (amount == 0) {
                 return;
@@ -144,7 +144,7 @@ public class MinerNode implements Runnable {
 
             boolean removed = false;
             for (SignedTransaction st : t.getTransactions()) {
-                if (bc.getBalance(st.from.pubKey) < (st.amount + st.fee)) {
+                if (bc.getBalance(st.from) < (st.amount + st.fee)) {
                     mem.removeTransaction(st);
                     removed = true;
                     logger.warning("Not enough money to send transaction: " + st);

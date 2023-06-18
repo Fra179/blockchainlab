@@ -3,6 +3,7 @@ package blockchainlab.blockchain.block;
 import java.nio.charset.StandardCharsets;
 import com.google.common.hash.Hashing;
 
+// TODO: ask Daniel to comment
 public class HashableBlock extends Block {
     public final int nonce;
 

@@ -2,6 +2,7 @@ package blockchainlab.blockchain.block;
 import blockchainlab.constants.Constants;
 import blockchainlab.blockchain.blockchain.InvalidBlockException;
 
+// TODO: ask Daniel to comment on the choice of having HashedBlock, HashableBlock and Block
 public final class HashedBlock extends HashableBlock {
     public final Hash hash;
 

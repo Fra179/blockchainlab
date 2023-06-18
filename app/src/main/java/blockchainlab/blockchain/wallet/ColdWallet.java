@@ -3,6 +3,9 @@ package blockchainlab.blockchain.wallet;
 import java.security.PublicKey;
 import java.util.Arrays;
 
+/**
+ * A ColdWallet is a wallet that can only receive and not send money
+ */
 public class ColdWallet {
     // Strings objects are immutable, so this is safe enough
     public final PublicKey pubKey;
