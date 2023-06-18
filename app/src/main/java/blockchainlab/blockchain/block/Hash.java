@@ -1,4 +1,4 @@
-package blockchainlab.blockchain;
+package blockchainlab.blockchain.block;
 
 public class Hash {
     public final String hash;

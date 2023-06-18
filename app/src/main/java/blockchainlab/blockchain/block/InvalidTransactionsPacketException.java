@@ -1,7 +1,11 @@
-package blockchainlab.blockchain;
+package blockchainlab.blockchain.block;
 
 public class InvalidTransactionsPacketException extends Exception {
     public InvalidTransactionsPacketException(String message) {
+        super(message);
+    }
+
+    public InvalidTransactionsPacketException(Exception message) {
         super(message);
     }
 

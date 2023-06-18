@@ -2,8 +2,18 @@ package blockchainlab.blockchain;
 
 import java.util.concurrent.ThreadLocalRandom;
 
+import blockchainlab.blockchain.block.Block;
+import blockchainlab.blockchain.block.HashableBlock;
+import blockchainlab.blockchain.block.HashedBlock;
+
 public final class Miner {
-    private Miner() {
+    private int difficulty = 8; 
+
+    public Miner(int difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Miner() {
     }
 
     /**
@@ -12,9 +22,8 @@ public final class Miner {
      * 
      * @param block      block to mine
      * @param difficulty number of zeros the hash of the result should start with
-     * @return hashed block with hash starting with `difficulty` zeros
      */
-    public static final HashedBlock mine(Block block, int difficulty) {
+    public final HashedBlock mine(Block block) {
         // TODO: multithreaded
         HashableBlock hashableBlock;
         do {

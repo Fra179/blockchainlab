@@ -1,65 +1,89 @@
 package blockchainlab;
+import blockchainlab.blockchain.ClientNode;
+import blockchainlab.blockchain.MinerNode;
+import blockchainlab.blockchain.communicator.Communicator;
+import blockchainlab.blockchain.wallet.ColdWallet;
+import blockchainlab.blockchain.wallet.HotWallet;
 
-import de.codeshelf.consoleui.prompt.ConsolePrompt;
-import de.codeshelf.consoleui.prompt.PromtResultItemIF;
-import de.codeshelf.consoleui.prompt.builder.PromptBuilder;
-import jline.TerminalFactory;
-
-import org.fusesource.jansi.AnsiConsole;
-
-import blockchainlab.lib.CuteStrings;
-
-import java.io.IOException;
-import java.util.HashMap;
-
-import static org.fusesource.jansi.Ansi.ansi;
-
-import static blockchainlab.constants.Constants.VERBOSE_VERSION;;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.ArrayList;
 
 public class App {
-    public static void main(String[] args) throws InterruptedException {
-        AnsiConsole.systemInstall();
+    public int numClients;
+    public int numMiners;
+    public int numNodes;
 
-        if (args.length == 1) {
-            if (args[0].strip().equals("--version")) {
-                System.out.println(VERBOSE_VERSION);
-            } else {
-                // TODO: if args[0] is valid experiment, run it, else, error + usage string +
-                // available experiments
-                System.out.println("Running experiment \"" + args[0] + "\"");
-            }
-        } else if (args.length == 0) {
-            // Run cli experiment designer
-            System.out.println(ansi()
-                    .eraseScreen()
-                    .render("@|green " + CuteStrings.boxify(VERBOSE_VERSION) + "|@\n"));
-            try {
-                ConsolePrompt prompt = new ConsolePrompt();
-                PromptBuilder promptBuilder = prompt.getPromptBuilder();
 
-                promptBuilder.createListPrompt()
-                        .name("pizzatype")
-                        .message("Which pizza do you want?")
-                        .newItem().text("Margherita").add() // without name (name defaults to text)
-                        .newItem("veneziana").text("Veneziana").add()
-                        .newItem("hawai").text("Hawai").add()
-                        .newItem("quattro").text("Quattro Stagioni").add()
-                        .addPrompt();
+    public static void main(String[] args) throws InterruptedException, NoSuchAlgorithmException {
 
-                HashMap<String, ? extends PromtResultItemIF> result = prompt.prompt(promptBuilder.build());
-                System.out.println("result = " + result);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                    TerminalFactory.get().restore();
-                } catch (Exception e) {
-                    e.printStackTrace();
+        Scanner askMiners = new Scanner(System.in);
+        System.out.println("Enter number of miners desired:");
+        String inputMiners = askMiners.nextLine();
+        System.out.println("Number of nodes is:" + inputMiners);
+        int numMiners = Integer.parseInt(inputMiners);
+
+        Scanner askClients = new Scanner(System.in);
+        System.out.println("Enter number of clients desired:");
+        String inputClients = askClients.nextLine();
+        System.out.println("Number of clients is:" + inputClients);
+        int numClients = Integer.parseInt(inputClients);
+
+        int numNodes = numClients + numMiners;
+
+        askMiners.close();
+        askClients.close();
+
+        //Genera tanti wallet quanti i nodi sulla rete
+        HotWallet[] wallets = new HotWallet[numNodes];
+
+        for (int i = 0; i < numNodes; i++) {
+            wallets[i] = new HotWallet(HotWallet.generateKeyPair());
+        }
+
+        Thread[] clients = new Thread[numClients];
+        Thread[] miners = new Thread[numMiners];
+
+        Communicator communicator = new Communicator();
+
+
+        for (int i = 0; i < numClients; i++) {
+            ColdWallet[] threadContacts = new ColdWallet[numClients - 1];
+
+            int k = 0;
+            for (int j = 0; j < numClients; j++) {
+                if (j != i) {
+                    threadContacts[k] = wallets[j];
+                    k++;
                 }
             }
-        } else {
-            // TODO: usage string
-            System.out.println("Usage:");
+
+            clients[i] = new Thread(new ClientNode(communicator, wallets[i], threadContacts));
+            clients[i].start();
+        }
+
+        for (int i = 0; i < numMiners; i++) {
+            ColdWallet[] threadContacts = new ColdWallet[numMiners - 1];
+
+            int k = 0;
+            for (int j = numClients; j < numNodes; j++) {
+                if (j != i+numClients) {
+                    threadContacts[k] = wallets[j];
+                    k++;
+                }
+            }
+
+            miners[i] = new Thread(new MinerNode(communicator, wallets[i], threadContacts));
+            miners[i].start();
+        }
+
+        Thread.sleep(20000);
+        for (Thread t: clients) {
+            t.interrupt();
+        }
+        for (Thread t: miners) {
+            t.interrupt();
         }
     }
 }

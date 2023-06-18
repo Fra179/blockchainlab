@@ -2,15 +2,15 @@ package blockchainlab;
 
 import org.junit.jupiter.api.Test;
 
-import blockchainlab.blockchain.Wallet;
+import blockchainlab.blockchain.wallet.ColdWallet;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class WalletTest {
     @Test
     void distinctWalletObjectsWithSameAddressAreTheSameWallet() {
-        Wallet a1 = new Wallet("a");
-        Wallet a2 = new Wallet("a");
+        ColdWallet a1 = new ColdWallet("a");
+        ColdWallet a2 = new ColdWallet("a");
         assertTrue(a1.equals(a2));
     }
 }

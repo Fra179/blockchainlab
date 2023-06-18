@@ -2,13 +2,13 @@ package blockchainlab;
 
 import org.junit.jupiter.api.Test;
 
-import blockchainlab.blockchain.Block;
-import blockchainlab.blockchain.Coinbase;
-import blockchainlab.blockchain.Hash;
-import blockchainlab.blockchain.HashableBlock;
-import blockchainlab.blockchain.InvalidTransactionsPacketException;
-import blockchainlab.blockchain.Transaction;
-import blockchainlab.blockchain.Transactions;
+import blockchainlab.blockchain.block.Block;
+import blockchainlab.blockchain.block.Coinbase;
+import blockchainlab.blockchain.block.Hash;
+import blockchainlab.blockchain.block.HashableBlock;
+import blockchainlab.blockchain.block.InvalidTransactionsPacketException;
+import blockchainlab.blockchain.block.Transaction;
+import blockchainlab.blockchain.block.Transactions;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -2,16 +2,16 @@ package blockchainlab;
 
 import org.junit.jupiter.api.Test;
 
-import blockchainlab.blockchain.InvalidTransactionsPacketException;
-import blockchainlab.blockchain.Transaction;
-import blockchainlab.blockchain.Transactions;
-import blockchainlab.blockchain.Wallet;
+import blockchainlab.blockchain.block.InvalidTransactionsPacketException;
+import blockchainlab.blockchain.block.Transaction;
+import blockchainlab.blockchain.block.Transactions;
+import blockchainlab.blockchain.wallet.ColdWallet;
 
-import static blockchainlab.blockchain.InvalidTransactionsPacketException.*;
+import static blockchainlab.blockchain.block.InvalidTransactionsPacketException.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TransactionsTests {
-    private static final Transaction t = new Transaction(10.0, new Wallet("a"), new Wallet("b"));
+    private static final Transaction t = new Transaction(10.0, new ColdWallet("a"), new ColdWallet("b"));
 
     @Test
     void nullTransactionsRaiseException() {
